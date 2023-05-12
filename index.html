@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Reaction Tester</title>
+    <style>
+      #shape{
+        width: 200px;
+        height: 200px;
+        background-color: #7fffd4;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 >Reaction Tester</h1>
+    <p style="font-style:italic;">Click on the boxes as soon as you can</p>
+    <p id="printReactionTime" ></p<>
+    <div id="shape"></div>
+
+    <script>
+      var start = new Date().getTime();
+      
+      document.getElementById('shape').onclick = function(){
+        var end = new Date().getTime();
+        var timedifference = (end-start)/1000;
+        this.style.display="none";
+        document.getElementById("printReactionTime").innerHTML="Your Reaction Time is: " + timedifference + "seconds";
+        newBoxes();
+      }
+      function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+      function newBoxes(){
+        var top= Math.random() *300;
+        var left = Math.random() *300;
+        var right = Math.random() *300;
+        var wh = ((Math.random() *400)+100);
+        var randomColor = getRandomColor();
+        
+        document.getElementById('shape').style.left = left +"px";
+        document.getElementById('shape').style.right = right +"px";
+        document.getElementById('shape').style.top = top + "px";
+        document.getElementById('shape').style.width = wh + "px";
+        document.getElementById('shape').style.height = wh + "px";
+        document.getElementById('shape').style.display = "block";
+        document.getElementById('shape').style.backgroundColor = randomColor;
+        
+
+        start= new Date().getTime();
+      }
+
+    </script>
+    
+  </body>
+</html>
